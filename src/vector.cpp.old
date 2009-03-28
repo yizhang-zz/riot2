@@ -1,0 +1,73 @@
+#include "vector.h"
+extern char* globaldir;
+//int varid = 0;
+
+
+//template <typename T>
+//int Vector::init(lsize_t cap, T const* data, lsize_t len) {
+
+//}
+
+/*template <typename T>
+Vector<T>::Vector(const Vector<T>& v):
+  size(v.size), type(v.type)
+{
+  strncpy(file, v.file, strlen(v.file));
+}
+*/
+/*template <typename T>
+Vector<T>& Vector<T>::operator=(const Vector<T>& v)
+{
+  if (&v != this) {
+	size = v.size;
+	type = v.type;
+	strncpy(file, v.file, strlen(v.file));
+  }
+  return *this;
+  }*/
+  
+ /*
+template <typename T>
+int Vector<T>::set(lsize_t* index, lsize_t indexlen, T* data, lsize_t len) {
+	int offset = sizeof(PDOInfo);
+	FILE *f = fopen(file, "r+");
+	int i;
+	for(i=0; i<indexlen; i++) {
+		lseek(f, offset+index[i]*sizeof(T), SEEK_SET);
+		fwrite(data+i%len, sizeof(T), 1, f);
+	}
+	fclose(f);
+	return 0;
+}
+
+	
+template <class T>
+int Vector<T>::fill(T* data, lsize_t len) {
+	int offset = sizeof(PDOInfo);
+	FILE *f = fopen(file, "r+");
+	int i;
+	lseek(f, offset, SEEK_SET);
+	for(i=0; i<this->size/len; i++) {
+		fwrite(data, sizeof(T), len, f);
+	}
+	int remain = this->size - this->size/len;
+	fwrite(data, sizeof(T), remain, f);
+	fclose(f);
+}
+
+template <class T>
+int Vector<T>::get(T* data, lsize_t* index, lsize_t len) {
+	FILE *f = fopen(file, "r+");
+	int offset = sizeof(PDOInfo);
+	lsize_t start = 0;
+	lsize_t stop = 0;
+	while (start < len) {
+		while (stop+1 < len && index[stop+1]-index[stop]==-1) stop++;
+		// fill [start,stop] 
+		lseek(f, offset+sizeof(T)*index[start], SEEK_SET);
+		fread(data+start, sizeof(T), stop-start+1, f);
+		start = stop = stop + 1;
+	}
+	return 0;
+}
+*/

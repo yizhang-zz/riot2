@@ -1,0 +1,36 @@
+#Makefile for building the C language shared libray
+
+C = gcc
+CXX = g++
+RDIR = /usr/local/lib/R
+# for building objects
+OPTS = -g -I$(RDIR)/include
+# for building R dynamic lib
+CFLAGS = -g
+#PKG_CFLAGS= -I/usr/mysql/include/mysql
+#PKG_LIBS= -L/usr/mysql/lib/mysql -R/usr/mysql/lib/mysql -lmysqlclient -lnsl -lm -lz
+PKG_LIBS= -lm -lz
+
+objects := $(patsubst %.c,%.o, $(wildcard *.c)) $(patsubst %.c,%.o, $(wildcard mainDriver/rdb*.c))
+
+#.c.o:
+#	$(CXX) $(OPTS) -c $<
+
+all: riot.so
+
+OBJECTS = vector.o \
+cwrapper.o
+
+vector.o: vector.c vector.h
+	$(CXX) $(OPTS) -c vector.cpp
+cwrapper.o: cwrapper.c common.h vector.h
+	$(CXX) $(OPTS)  -c cwrapper.c
+
+
+riot.so: vector.h vector.cpp cwrapper.cpp xbo.h lop.h mdo.h pdo.h index.h
+	@echo "make shared library"
+	CFLAGS="-g " PKG_CFLAGS="$(PKG_CFLAGS)" PKG_LIBS="$(PKG_LIBS)" R CMD SHLIB -o $@ vector.cpp cwrapper.cpp common.cpp
+#	$^
+
+clean:
+	-rm *.o *.so
