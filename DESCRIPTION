@@ -1,4 +1,4 @@
-Package: RIOT
+Package: RIOT2
 Version: 0.0.1
 Date: 2008-11-11
 Title: R with I/O Transparency
@@ -8,4 +8,3 @@ Depends: R (>= 2.3.0), methods
 Description: A package providing support for large data manipulation in a transparent manner.
 License: LGPL (version 2 or later)
 URL: http://www.r-project.org
-
